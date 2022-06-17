@@ -429,6 +429,8 @@ OPTIONAL_POD(int, int);
  */
 
 %pragma(csharp) modulecode=%{
+  public static System.EventHandler<System.IO.ErrorEventArgs> ExceptionInDispose { get; set; }
+
   internal static byte[] StringToUtf8Bytes(string str)
   {
     if (str == null)
