@@ -94,6 +94,8 @@ OGRErrMessages( int rc ) {
  */
 
 %pragma(csharp) modulecode=%{
+  public static System.EventHandler<System.IO.ErrorEventArgs> ExceptionInDispose { get; set; }
+
   internal unsafe static string Utf8BytesToString(IntPtr pNativeData)
   {
     if (pNativeData == IntPtr.Zero)
