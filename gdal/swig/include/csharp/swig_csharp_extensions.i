@@ -193,26 +193,48 @@
 
 %typemap(csdestruct, methodname="Dispose", methodmodifiers="public") SWIGTYPE {
   lock(this) {
-      if(swigCPtr.Handle != IntPtr.Zero && swigCMemOwn) {
-        swigCMemOwn = false;
-        $imcall;
+      try
+	  {
+        if(swigCPtr.Handle != IntPtr.Zero && swigCMemOwn) {
+          swigCMemOwn = false;
+          $imcall;
+        }
+        swigCPtr = new HandleRef(null, IntPtr.Zero);
+        swigParentRef = null;
+        GC.SuppressFinalize(this);
       }
-      swigCPtr = new HandleRef(null, IntPtr.Zero);
-      swigParentRef = null;
-      GC.SuppressFinalize(this);
+      catch (Exception e)
+      {
+        System.EventHandler<System.IO.ErrorEventArgs> handler = OSGeo.OSR.Osr.ExceptionInDispose;
+		if (handler != null)
+		{
+          handler(this, new System.IO.ErrorEventArgs(e));
+        }
+	  }	  
     }
   }
 
 %typemap(csdestruct_derived, methodname="Dispose", methodmodifiers="public") TYPE {
   lock(this) {
-      if(swigCPtr.Handle != IntPtr.Zero && swigCMemOwn) {
-        swigCMemOwn = false;
-        $imcall;
+      try
+	  {
+        if(swigCPtr.Handle != IntPtr.Zero && swigCMemOwn) {
+           swigCMemOwn = false;
+          $imcall;
+        }
+        swigCPtr = new HandleRef(null, IntPtr.Zero);
+        swigParentRef = null;
+        GC.SuppressFinalize(this);
+        base.Dispose();
       }
-      swigCPtr = new HandleRef(null, IntPtr.Zero);
-      swigParentRef = null;
-      GC.SuppressFinalize(this);
-      base.Dispose();
+      catch (Exception e)
+      {
+        System.EventHandler<System.IO.ErrorEventArgs> handler = OSGeo.OSR.Osr.ExceptionInDispose;
+		if (handler != null)
+		{
+          handler(this, new System.IO.ErrorEventArgs(e));
+        }
+	  }	  
     }
   }
 
