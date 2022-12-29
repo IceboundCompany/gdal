@@ -90,5 +90,13 @@ DEFINE_EXTERNAL_CLASS(GDALMajorObjectShadow, OSGeo.GDAL.MajorObject)
 
   public Geometry(wkbGeometryType type) : this(OgrPINVOKE.new_Geometry((int)type, null, 0, IntPtr.Zero, null), true, null) {
     if (OgrPINVOKE.SWIGPendingException.Pending) throw OgrPINVOKE.SWIGPendingException.Retrieve();
-  }
+  }  
 }
+
+%pragma(csharp) modulecode=%{
+  public static void HandleException() {
+	if (OgrPINVOKE.SWIGPendingException.Pending) {
+		throw OgrPINVOKE.SWIGPendingException.Retrieve();
+	}
+  }
+%}
