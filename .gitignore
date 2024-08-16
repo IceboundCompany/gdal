@@ -171,3 +171,5 @@ gdal/share
 CMakeSettings.json
 CMakeUserPresets.json
 out/
+/vc17x64
+/vc18x64
